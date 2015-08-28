@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6AD0AF22-62E1-4BFD-A9B0-DA051C285656}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoCo.CRM.Application</RootNamespace>
+    <AssemblyName>CoCo.CRM.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationService.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="IBaseService.cs" />
+    <Compile Include="Impl\SysMenuService.cs" />
+    <Compile Include="ISysMenuService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CoCo.CRM.Common\CoCo.CRM.Common.csproj">
+      <Project>{F23EB622-50E3-421A-9E3D-C0F86EF0CC1D}</Project>
+      <Name>CoCo.CRM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoCo.CRM.Domain\CoCo.CRM.Domain.csproj">
+      <Project>{A4B3F957-5680-44FE-8C51-D01F088DC7A1}</Project>
+      <Name>CoCo.CRM.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoCo.CRM.EntityFramework\CoCo.CRM.EntityFramework.csproj">
+      <Project>{0C694D03-39FF-4E81-95F6-D71DFAA81015}</Project>
+      <Name>CoCo.CRM.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoCo.CRM.Infrastructure\CoCo.CRM.Infrastructure.csproj">
+      <Project>{A3F05E95-A48A-4571-9B04-C8F9FA9D5D7E}</Project>
+      <Name>CoCo.CRM.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoCo.CRM.ModelDTO\CoCo.CRM.ModelDTO.csproj">
+      <Project>{9860BF01-A406-4E96-ACA5-F091E2C4345E}</Project>
+      <Name>CoCo.CRM.ModelDTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
