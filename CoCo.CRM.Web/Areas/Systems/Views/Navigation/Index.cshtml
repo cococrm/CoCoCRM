@@ -5,48 +5,53 @@
 @section top{
     <div class="toolbar">
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">新增</a>
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">编辑</a>
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'">删除</a>
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'">保存</a>
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="$.easyui.treegrid.edit('navigation')">编辑</a>
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'" onclick="$.easyui.treegrid.cancel('navigation')">取消</a>
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'">删除</a> 
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'">保存</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'">刷新</a>
     </div>
 }
 @section content{
+    <table id="navigation" class="easyui-treegrid" style="width: 100%">
+    </table>
     <script type="text/javascript">
+        var _this = $("#navigation");
         $(function () {
-            $("#navigation").treegrid({
+            _this.treegrid({
                 url: 'Query',
-                method:'get',
+                method: 'get',
                 idField: 'ID',
                 treeField: 'MenuName',
                 columns: [[
-                    { title: '名称', field: 'MenuName', width: 200 },
-                    { title: '编码', field: 'MenuCode', width: 200 },
-                    { title: '链接', field: 'LinkUrl', width: 280 },
-                    { title: '排序', field: 'SortId', width: 80 },
-                    { title: '锁定', field: 'IsLock', width: 80 },
-                    { title: '父目录', field: 'ParentId', width: 200 },
-                    { title: '备注', field: 'Remark', width: 300 },
-                    { title: '图标', field: 'Icon', width: 200 },
-                    { title: '权限', field: 'Action', width: 100 }
-                ]]
+                    { title: '名称', field: 'MenuName', width: '15%', editor: 'text' },
+                    { title: '编码', field: 'MenuCode', width: '10%', editor: 'text' },
+                    { title: '链接', field: 'LinkUrl', width: '15%', editor: 'text' },
+                    { title: '排序', field: 'SortId', align: 'center', width: '5%', editor: 'numberbox' },
+                    { title: '锁定', field: 'IsLock', align: 'center', width: '5%', editor: '{type:"checkbox",options:{on:true,off:false}}', formatter: $.easyui.formatterCheckbox },
+                    { title: '父目录', field: 'ParentId', width: '15%', editor: {
+                        type: "combotree",
+                        options: {
+                            url: "GetComboTree",
+                            method: "get"
+                        }
+                    },
+                        formatter: function (value, row) {
+                            return row.ParentName;
+                        }
+                    },
+                    { title: '备注', field: 'Remark', width: '15%', editor: 'text' },
+                    { title: '图标', field: 'Icon', width: '10%' ,editor:'{type:"lookup"}' },
+                    { title: '权限', field: 'Action', width: '10%',
+                        formatter: function (value, row) {
+                            return '<a href="#" class="easyui-linkbutton">管理权限</a>';
+                        }
+                    }
+                ]],
+                onDblClickRow: function (row) {
+                    $.easyui.treegrid.edit('navigation');
+                }
             });
         });
     </script>
-    <table id="navigation" class="easyui-treegrid" style="width:100%"></table>
-    @*<table id="navigation" class="easyui-treegrid" style="width:100%" data-options="url:'/Systems/Navigation/Query',method:'get',idField: 'ID',treeField:'MenuName'">
-        <thead>
-            <tr>
-                <th data-options="field:'MenuName',align:'center',editor:'text'" width="200">名称</th>
-                <th data-options="field:'MenuCode',align:'center',editor:'text'" width="200">编码</th>
-                <th data-options="field:'LinkUrl',editor:'text'" width="200" align="center">链接</th>
-                <th data-options="field:'SortId',align:'center',editor:'numberbox'" width="80">排序</th>
-                <th data-options="field:'IsLock',align:'center',editor:'checkbox'" width="100">锁定</th>
-                <th data-options="field:'ParentId',align:'center',editor:'combotree'" width="150">父目录</th>
-                <th data-options="field:'Remark',align:'center',editor:'text'" width="280">备注</th>
-                <th data-options="field:'Icon',align:'center',editor:'text'" width="200">图标</th>
-                <th data-options="field:'Action',align:'center'" width="100">权限</th>
-            </tr>
-        </thead>
-    </table>*@
 }

@@ -23,7 +23,7 @@ namespace CoCo.CRM.Application
         /// <returns></returns>
         IEnumerable<TreeNode> LoadSystemMenuChilds(Guid parentId);
         /// <summary>
-        /// 查询所有，Tree格式
+        /// 查询所有，返回Tree格式
         /// </summary>
         /// <returns></returns>
         IEnumerable<SysMenuDTO> GetAllMenuTree();

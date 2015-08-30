@@ -167,7 +167,11 @@ namespace CoCo.CRM.Application.Impl
             {
                 if (entity.ParentId.Equals(Guid.Empty))
                     tree.Add(entity);
-                children.Add(entity);
+                else
+                {
+                    entity.ParentName = list.Single(o => o.ID == entity.ParentId).MenuName;
+                    children.Add(entity);
+                }
                 node.Children = children;
                 if (_sysMenuRepository.ExistsChildren(entity.ID))//判断是否有子节点
                 {

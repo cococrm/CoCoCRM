@@ -17,6 +17,7 @@ namespace CoCo.CRM.Web
 
             bundles.Add(new ScriptBundle("~/Scripts/easyui").Include(
                         "~/Scripts/easyui/jquery.min.js",
+                        "~/Scripts/easyui/jquery.json-2.4.min.js",
                         "~/Scripts/easyui/jquery.easyui.min.js",
                         "~/Scripts/jquery.util.js",
                         "~/Scripts/util.js"

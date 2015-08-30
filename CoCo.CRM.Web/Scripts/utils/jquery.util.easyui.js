@@ -125,6 +125,65 @@
                     top: e.pageY
                 });
                 return menu;
+            },
+            //格式化CheckBox
+            formatterCheckbox: function (value) {
+                if (value === true || value == "true") {
+                    return '<input type="checkbox" checked="checked" />';
+                }
+                return '<input type="checkbox" />';
+            },
+            //格式化Combox控件(支持ComboTree) - 修正combox控件显示值的问题
+            formatCombox: function (data, valueField, textField) {
+                return function (value) {
+                    if (!data)
+                        return "";
+                    var result = value;
+                    for (var i = 0; i < data.length; i++) {
+                        result = getText(data[i]);
+                        if (result)
+                            break;
+                    }
+                    return result;
+
+                    //获取对应文本
+                    function getText(node) {
+                        result = getResult();
+                        if (result)
+                            return result;
+                        if (!node.children || node.children.length === 0)
+                            return result;
+                        for (var j = 0; j < node.children.length; j++) {
+                            result = getText(node.children[j]);
+                            if (result)
+                                break;
+                        }
+                        return result;
+
+                        //获取结果
+                        function getResult() {
+                            return node[valueField] == value ? node[textField] : "";
+                        }
+                    }
+                };
+            },
+            //格式化Combox控件(支持ComboTree) - 基于Url加载
+            formatComboxFromUrl: function (url, valueField, textField) {
+                var data = null;
+                getData();
+                return $.easyui.formatCombox(data, valueField, textField);
+
+                //获取数据
+                function getData() {
+                    if ($.isObject(url))
+                        return;
+                    $.getJSON(url, function (result) {
+                        data = result;
+                    });
+//                    $.easyui.ajax(url, "", function (result) {
+//                        data = result;
+//                    }, "", "GET", false);
+                }
             }
         };
     })();

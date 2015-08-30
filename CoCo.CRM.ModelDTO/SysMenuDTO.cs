@@ -34,6 +34,7 @@ namespace CoCo.CRM.ModelDTO
         /// 父目录
         /// </summary>
         public Guid ParentId { get; set; }
+        public string ParentName { get; set; }
         /// <summary>
         /// 权限
         /// </summary>

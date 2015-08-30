@@ -18,7 +18,7 @@ namespace CoCo.CRM.Web.Areas.Systems.Controllers
     public class NavigationController : ControllerBase
     {
         private readonly ISysMenuService _sysMenuService = ServiceLocator.Instance.GetService<ISysMenuService>();
-        
+
         public ActionResult Index()
         {
             return View();
@@ -30,8 +30,27 @@ namespace CoCo.CRM.Web.Areas.Systems.Controllers
         /// <returns></returns>
         public ActionResult Query()
         {
-            //return Json(_sysMenuService.GetAllMenuTree(),JsonRequestBehavior.AllowGet);
-            return Content(Common.Json.ToJson(_sysMenuService.GetAllMenuTree()));
+            var _list = _sysMenuService.GetAllMenuTree();
+            return Content(Common.Json.ToJson(_list));
+        }
+        /// <summary>
+        /// 获取所以菜单返回ComboTree格式
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetComboTree()
+        {
+            var _plist = _sysMenuService.LoadSystemParent();
+            var query = from p in _plist
+                        select new TreeNode
+                        {
+                            Id = p.Id,
+                            Text = p.Text,
+                            IconCls = p.IconCls,
+                            Children = _sysMenuService.LoadSystemMenuChilds(p.Id).ToList()
+                        };
+            var result = query.ToList();
+            result.Insert(0,new TreeNode(Guid.Empty, "无父目录", ""));
+            return Content(Common.Json.ToJson(result));
         }
 
     }

@@ -12,6 +12,15 @@ namespace CoCo.CRM.ModelDTO
     [DataContract]
     public class TreeNode
     {
+
+        public TreeNode() { }
+        public TreeNode(Guid id,string text,string icon)
+        {
+            this.Id = id;
+            this.Text = text;
+            this.IconCls = icon;
+        }
+
         /// <summary>
         /// 菜单Id
         /// </summary>

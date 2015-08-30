@@ -404,6 +404,7 @@
     <Content Include="Scripts\easyui\easyloader.js" />
     <Content Include="Scripts\easyui\jquery.easyui.min.js" />
     <Content Include="Scripts\easyui\jquery.easyui.mobile.js" />
+    <Content Include="Scripts\easyui\jquery.json-2.4.min.js" />
     <Content Include="Scripts\easyui\jquery.min.js" />
     <Content Include="Scripts\easyui\locale\easyui-lang-af.js" />
     <Content Include="Scripts\easyui\locale\easyui-lang-am.js" />
@@ -772,6 +773,7 @@
     <Content Include="Scripts\easyui\themes\metro\validatebox.css" />
     <Content Include="Scripts\easyui\themes\metro\window.css" />
     <Content Include="Scripts\easyui\themes\mobile.css" />
+    <Content Include="Scripts\utils\jquery.util.easyui.grid.js" />
     <Content Include="Scripts\utils\jquery.util.easyui.js" />
     <Content Include="Scripts\utils\jquery.util.js" />
     <Content Include="Scripts\project.js" />
