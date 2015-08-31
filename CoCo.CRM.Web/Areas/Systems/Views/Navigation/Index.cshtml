@@ -4,12 +4,12 @@
 @*工具栏*@
 @section top{
     <div class="toolbar">
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">新增</a>
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="$.easyui.treegrid.edit('navigation')">编辑</a>
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'" onclick="$.easyui.treegrid.cancel('navigation')">取消</a>
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'">删除</a> 
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'"onclick="$.easyui.treegrid.addRow('navigation')">新增</a> 
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="$.easyui.treegrid.edit('navigation')">编辑</a> 
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'" onclick="$.easyui.treegrid.cancel('navigation')">取消</a> 
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'" onclick="$.easyui.treegrid.remove('navigation')">删除</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'">保存</a> 
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'">刷新</a>
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'" onclick="$.easyui.treegrid.refresh('navigation')">刷新</a>
     </div>
 }
 @section content{
@@ -23,11 +23,30 @@
                 method: 'get',
                 idField: 'ID',
                 treeField: 'MenuName',
+                rownumbers: 'true',
                 columns: [[
-                    { title: '名称', field: 'MenuName', width: '15%', editor: 'text' },
-                    { title: '编码', field: 'MenuCode', width: '10%', editor: 'text' },
+                    { title: '名称', field: 'MenuName', width: '15%', editor: {
+                        type: 'textbox',
+                        options: {
+                            required: 'true'
+                        }
+                    }
+                    },
+                    { title: '编码', field: 'MenuCode', width: '10%', editor: {
+                        type: 'textbox',
+                        options: {
+                            required: 'true'
+                        }
+                    }
+                    },
                     { title: '链接', field: 'LinkUrl', width: '15%', editor: 'text' },
-                    { title: '排序', field: 'SortId', align: 'center', width: '5%', editor: 'numberbox' },
+                    { title: '排序', field: 'SortId', align: 'center', width: '5%', editor: {
+                        type: 'numberbox',
+                        options: {
+                            required: 'true'
+                        }
+                    }
+                    },
                     { title: '锁定', field: 'IsLock', align: 'center', width: '5%', editor: '{type:"checkbox",options:{on:true,off:false}}', formatter: $.easyui.formatterCheckbox },
                     { title: '父目录', field: 'ParentId', width: '15%', editor: {
                         type: "combotree",
@@ -41,8 +60,8 @@
                         }
                     },
                     { title: '备注', field: 'Remark', width: '15%', editor: 'text' },
-                    { title: '图标', field: 'Icon', width: '10%' ,editor:'{type:"lookup"}' },
-                    { title: '权限', field: 'Action', width: '10%',
+                    { title: '图标', field: 'Icon', width: '10%', editor: '{type:"lookup"}' },
+                    { title: '权限', field: 'Action', width: '8%', align: 'center',
                         formatter: function (value, row) {
                             return '<a href="#" class="easyui-linkbutton">管理权限</a>';
                         }

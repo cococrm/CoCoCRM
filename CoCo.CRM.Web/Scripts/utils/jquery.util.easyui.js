@@ -1,5 +1,11 @@
 ﻿(function ($) {
     $.easyui = (function () {
+
+        //获取消息管理器
+        function getMessager() {
+            return parent.$.messager;
+        }
+
         return {
             //显示全屏加载进度条
             showLoading: function () {
@@ -180,10 +186,57 @@
                     $.getJSON(url, function (result) {
                         data = result;
                     });
-//                    $.easyui.ajax(url, "", function (result) {
-//                        data = result;
-//                    }, "", "GET", false);
                 }
+            },
+            info: function (msg, title) {
+                ///	<summary>
+                ///	弹出信息框
+                ///	</summary>
+                ///	<param name="msg" type="String">
+                ///	内容
+                ///	</param>
+                ///	<param name="title" type="String">
+                ///	标题
+                ///	</param>
+                if (!msg)
+                    return;
+                getMessager().alert(title || "信息", msg, 'info');
+            },
+            warn: function (msg, title) {
+                ///	<summary>
+                ///	弹出警告框
+                ///	</summary>
+                ///	<param name="msg" type="String">
+                ///	内容
+                ///	</param>
+                ///	<param name="title" type="String">
+                ///	标题
+                ///	</param>
+                if (!msg)
+                    return;
+                getMessager().alert(title || "错误", msg, 'error');
+            },
+            confirm: function (msg, callback, title) {
+                ///	<summary>
+                ///	弹出确认框
+                ///	</summary>
+                ///	<param name="msg" type="String">
+                ///	内容
+                ///	</param>
+                ///	<param name="callback" type="Function">
+                ///	点击ok按钮后的回调函数
+                ///	</param>
+                ///	<param name="title" type="String">
+                ///	标题
+                ///	</param>
+                if (!msg) {
+                    callback();
+                    return;
+                }
+                getMessager().confirm(title || "确认", msg, function (result) {
+                    if (result)
+                        callback();
+                });
             }
         };
     })();
