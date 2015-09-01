@@ -69,6 +69,12 @@
                 ]],
                 onDblClickRow: function (row) {
                     $.easyui.treegrid.edit('navigation');
+                },
+                onCancelEdit: function (row) {
+                    alert(row.isNewRecord);
+                    if (row.isNewRecord) {
+                        $(this).treegrid('deleteRow', row.Id);
+                    }
                 }
             });
         });
