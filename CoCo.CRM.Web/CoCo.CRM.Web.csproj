@@ -773,6 +773,7 @@
     <Content Include="Scripts\easyui\themes\metro\validatebox.css" />
     <Content Include="Scripts\easyui\themes\metro\window.css" />
     <Content Include="Scripts\easyui\themes\mobile.css" />
+    <Content Include="Scripts\utils\jquery.easyui.datagrid.lookup.js" />
     <Content Include="Scripts\utils\jquery.util.easyui.grid.js" />
     <Content Include="Scripts\utils\jquery.util.easyui.js" />
     <Content Include="Scripts\utils\jquery.util.js" />

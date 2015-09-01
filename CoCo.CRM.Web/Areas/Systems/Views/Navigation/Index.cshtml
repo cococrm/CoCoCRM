@@ -8,7 +8,7 @@
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="$.easyui.treegrid.edit('navigation')">编辑</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'" onclick="$.easyui.treegrid.cancel('navigation')">取消</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'" onclick="$.easyui.treegrid.remove('navigation')">删除</a> 
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'">保存</a> 
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'" onclick="$.easyui.treegrid.save('navigation','save')">保存</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'" onclick="$.easyui.treegrid.refresh('navigation')">刷新</a>
     </div>
 }
@@ -71,9 +71,8 @@
                     $.easyui.treegrid.edit('navigation');
                 },
                 onCancelEdit: function (row) {
-                    alert(row.isNewRecord);
                     if (row.isNewRecord) {
-                        $(this).treegrid('deleteRow', row.Id);
+                        $(this).treegrid('deleteRow', row.ID);
                     }
                 }
             });

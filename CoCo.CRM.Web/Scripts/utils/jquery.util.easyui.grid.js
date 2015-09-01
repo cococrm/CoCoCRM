@@ -20,8 +20,8 @@
             addRow: function (gridId) {
                 if ($.easyui.treegrid.endEditing(gridId)) {
                     var grid = $("#" + gridId);
-                    var row = { ID: $.newGuid('-'), MenuName: "", MenuCode: "", ParentId: $.newEmptyGuid() };
-                    grid.treegrid('append', { parent: '', data: [row], isNewRecord: true });
+                    var row = { ID: $.newGuid('-'), MenuName: "", MenuCode: "", ParentId: $.newEmptyGuid(), isNewRecord: true };
+                    grid.treegrid('append', { parent: '', data: [row] });
                     grid.treegrid('select', row.ID);
                     $.easyui.treegrid.edit(gridId);
                 }
@@ -39,7 +39,6 @@
                         editIndex = row.ID;
                         grid.treegrid('selectRow', editIndex);
                         grid.treegrid('beginEdit', editIndex);
-                        alert(row.isNewRecord);
                     } else {
                         grid.treegrid('selectRow', editIndex);
                     }
@@ -50,7 +49,6 @@
                 if (editIndex == undefined) { return; }
                 var grid = $("#" + gridId);
                 grid.treegrid('cancelEdit', editIndex);
-                //grid.datagrid('rejectChanges');
                 editIndex = undefined;
             },
             //删除节点
@@ -67,6 +65,16 @@
             refresh: function (gridId) {
                 var grid = $("#" + gridId);
                 grid.treegrid('reload');
+            },
+            //保存
+            save: function (gridId, url) {
+                var grid = $("#" + gridId);
+                if ($.easyui.treegrid.endEditing(gridId)) {
+                    if (grid.treegrid('getChanges').length == 0) {
+                        return;
+                    }
+
+                }
             }
         };
     })();
