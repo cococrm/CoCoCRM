@@ -237,6 +237,28 @@
                     if (result)
                         callback();
                 });
+            },
+            //Ajax提交 
+            ajax: function (url, data, callback, dataType, type) {
+                dataType = dataType || 'JSON';
+                type = type || 'POST';
+                $.easyui.showLoading();
+                $.ajax({
+                    type: type,
+                    url: url,
+                    data: data,
+                    dataType: dataType,
+                    cache: false,
+                    success: function (result) {
+                        $.easyui.removeLoading();
+                        if (callback)
+                            callback(result);
+                    },
+                    error: function (result) {
+                        $.easyui.removeLoading();
+                        //$.easyui.warn("Http status: " + xmlHttpRequest.status + " " + xmlHttpRequest.statusText + "\najaxOptions: " + ajaxOptions + "\nerror:" + error + "\n" + xmlHttpRequest.responseText);
+                    }
+                })
             }
         };
     })();

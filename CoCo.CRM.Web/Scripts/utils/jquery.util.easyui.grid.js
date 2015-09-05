@@ -23,6 +23,7 @@
                     var row = { ID: $.newGuid('-'), MenuName: "", MenuCode: "", ParentId: $.newEmptyGuid(), isNewRecord: true };
                     grid.treegrid('append', { parent: '', data: [row] });
                     grid.treegrid('select', row.ID);
+                    grid.data("datagrid").insertedRows.push(row);
                     $.easyui.treegrid.edit(gridId);
                 }
             },
@@ -73,7 +74,14 @@
                     if (grid.treegrid('getChanges').length == 0) {
                         return;
                     }
-
+                    var addList = grid.treegrid('getChanges', 'inserted');
+                    var updateList = grid.treegrid('getChanges', 'updated');
+                    var deleteList = grid.treegrid('getChanges', 'deleted');
+                    var data = { addList: $.toJSON(addList), updateList: $.toJSON(updateList), deleteList: $.toJSON(deleteList) };
+                    $.easyui.ajax('Save', data, function () {
+                        grid.treegrid('acceptChanges');
+                        $.easyui.treegrid.refresh(gridId);
+                    });
                 }
             }
         };

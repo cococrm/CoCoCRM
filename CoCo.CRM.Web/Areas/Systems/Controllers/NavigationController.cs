@@ -34,6 +34,23 @@ namespace CoCo.CRM.Web.Areas.Systems.Controllers
             return Content(Common.Json.ToJson(_list));
         }
         /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="addList"></param>
+        /// <param name="updateList"></param>
+        /// <param name="deleteList"></param>
+        /// <returns></returns>
+        public ActionResult Save(string addList, string updateList, string deleteList)
+        {
+            IList<SysMenuDTO> addEntitys = Common.Json.ToObject<List<SysMenuDTO>>(addList);
+            IList<SysMenuDTO> updateEntitys = Common.Json.ToObject<List<SysMenuDTO>>(updateList);
+            IList<SysMenuDTO> deleteEntitys = Common.Json.ToObject<List<SysMenuDTO>>(deleteList);
+            _sysMenuService.Save(addEntitys, updateEntitys, deleteEntitys);
+            return OK();
+        }
+
+
+        /// <summary>
         /// 获取所以菜单返回ComboTree格式
         /// </summary>
         /// <returns></returns>
@@ -49,7 +66,7 @@ namespace CoCo.CRM.Web.Areas.Systems.Controllers
                             Children = _sysMenuService.LoadSystemMenuChilds(p.Id).ToList()
                         };
             var result = query.ToList();
-            result.Insert(0,new TreeNode(Guid.Empty, "无父目录", ""));
+            result.Insert(0, new TreeNode(Guid.Empty, "无父目录", ""));
             return Content(Common.Json.ToJson(result));
         }
 

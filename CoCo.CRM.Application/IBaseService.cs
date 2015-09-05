@@ -14,15 +14,32 @@ namespace CoCo.CRM.Application
         where BaseDTO : class,IBaseDTO<Tkey>
     {
         /// <summary>
+        /// 批量保存
+        /// </summary>
+        /// <param name="addEntitys"></param>
+        /// <param name="updateEntitys"></param>
+        /// <param name="deleteEntitys"></param>
+        void Save(IList<BaseDTO> addEntitys, IList<BaseDTO> updateEntitys, IList<BaseDTO> deleteEntitys);
+        /// <summary>
         /// 添加实体
         /// </summary>
         /// <param name="entity"></param>
         void Add(BaseDTO entity);
         /// <summary>
+        /// 批量添加实体
+        /// </summary>
+        /// <param name="entitys"></param>
+        void Add(IList<BaseDTO> entitys);
+        /// <summary>
         /// 修改实体
         /// </summary>
         /// <param name="entity"></param>
         void Update(BaseDTO entity);
+        /// <summary>
+        /// 批量修改
+        /// </summary>
+        /// <param name="entitys"></param>
+        void Update(IList<BaseDTO> entitys);
         /// <summary>
         /// 删除实体
         /// </summary>

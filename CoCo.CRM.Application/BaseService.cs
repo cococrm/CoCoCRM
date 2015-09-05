@@ -30,6 +30,18 @@ namespace CoCo.CRM.Application
             this._repository = repository;
         }
         /// <summary>
+        /// 批量保存
+        /// </summary>
+        /// <param name="addEntitys"></param>
+        /// <param name="updateEntitys"></param>
+        /// <param name="deleteEntitys"></param>
+        public virtual void Save(IList<BaseDTO> addEntitys, IList<BaseDTO> updateEntitys, IList<BaseDTO> deleteEntitys)
+        {
+            this.Add(addEntitys);
+            this.Update(updateEntitys);
+            this.Delete(deleteEntitys);
+        }
+        /// <summary>
         /// 添加
         /// </summary>
         /// <param name="entity"></param>
@@ -39,6 +51,20 @@ namespace CoCo.CRM.Application
                 throw new ArgumentNullException("添加数据不能为空！");
             var aggregateRoot = Mapper.Map<BaseDTO, TAggregateRoot>(entity);//Map转换
             _repository.Add(aggregateRoot);
+            _repository.Context.Commit();
+        }
+        /// <summary>
+        /// 批量添加
+        /// </summary>
+        /// <param name="entitys"></param>
+        public virtual void Add(IList<BaseDTO> entitys)
+        {
+            if (entitys == null)
+                return;
+            if (entitys.Count == 0)
+                return;
+            var aggregateRoots = Mapper.Map<IList<BaseDTO>, IList<TAggregateRoot>>(entitys);
+            _repository.Add(aggregateRoots.AsEnumerable());
             _repository.Context.Commit();
         }
         /// <summary>
@@ -54,6 +80,23 @@ namespace CoCo.CRM.Application
             _repository.Context.Commit();
         }
         /// <summary>
+        /// 批量修改
+        /// </summary>
+        /// <param name="entitys"></param>
+        public virtual void Update(IList<BaseDTO> entitys)
+        {
+            if (entitys == null)
+                return;
+            if (entitys.Count == 0)
+                return;
+            foreach (var entity in entitys)
+            {
+                var aggregateRoot = Mapper.Map<BaseDTO, TAggregateRoot>(entity);
+                _repository.Update(aggregateRoot);
+            }
+            _repository.Context.Commit();
+        }
+        /// <summary>
         /// 删除
         /// </summary>
         /// <param name="entity"></param>
@@ -65,19 +108,33 @@ namespace CoCo.CRM.Application
             _repository.Remove(aggregateRoot);
             _repository.Context.Commit();
         }
+        /// <summary>
+        /// 主键删除
+        /// </summary>
+        /// <param name="key"></param>
         public virtual void Delete(Tkey key)
         {
             _repository.Remove(key);
             _repository.Context.Commit();
         }
-        public virtual void Delete(IList<BaseDTO> list)
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="list"></param>
+        public virtual void Delete(IList<BaseDTO> entitys)
         {
-            if (list == null)
-                throw new ArgumentNullException("删除数据不能为空！");
-            var _list = Mapper.Map<IList<BaseDTO>, IList<TAggregateRoot>>(list);
+            if (entitys == null)
+                return;
+            if (entitys.Count == 0)
+                return;
+            var _list = Mapper.Map<IList<BaseDTO>, IList<TAggregateRoot>>(entitys);
             _repository.Remove(_list);
             _repository.Context.Commit();
         }
+        /// <summary>
+        /// 批量主键删除
+        /// </summary>
+        /// <param name="list"></param>
         public virtual void Delete(IList<Tkey> list)
         {
             if (list == null)
