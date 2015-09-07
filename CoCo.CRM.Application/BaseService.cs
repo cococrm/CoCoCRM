@@ -127,8 +127,11 @@ namespace CoCo.CRM.Application
                 return;
             if (entitys.Count == 0)
                 return;
-            var _list = Mapper.Map<IList<BaseDTO>, IList<TAggregateRoot>>(entitys);
-            _repository.Remove(_list);
+            foreach (var entity in entitys)
+            {
+                var aggregateRoot = Mapper.Map<BaseDTO, TAggregateRoot>(entity);
+                _repository.Remove(aggregateRoot);
+            }
             _repository.Context.Commit();
         }
         /// <summary>
@@ -138,7 +141,9 @@ namespace CoCo.CRM.Application
         public virtual void Delete(IList<Tkey> list)
         {
             if (list == null)
-                throw new ArgumentNullException("删除数据不能为空！");
+                return;
+            if (list.Count == 0)
+                return;
             _repository.Remove(list);
             _repository.Context.Commit();
         }

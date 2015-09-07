@@ -24,16 +24,16 @@
 
                 //弹出窗口
                 function showDialog() {
-                    $.easyui.addItem("lookups", control);
+                    //$.easyui.addItem("lookups", control);
                     control.combo('hidePanel');
                     $.easyui.dialog(options);
                 };
 
                 //移除控件
                 function removeControl() {
-                    var item = $.easyui.getItem("lookups");
-                    if (item === control)
-                        $.easyui.getArray("lookups").pop();
+//                    var item = $.easyui.getItem("lookups");
+//                    if (item === control)
+//                        $.easyui.getArray("lookups").pop();
                 }
             }
 
@@ -41,7 +41,7 @@
             function createCombo() {
                 control.combo(options);
                 control.combo('textbox').unbind("keydown");
-                control.combo('textbox').blur(function() {
+                control.combo('textbox').blur(function () {
                     control.lookup("setValue", control.combo('textbox').val());
                 });
                 control.data('combo').combo.addClass("combo-lookup");

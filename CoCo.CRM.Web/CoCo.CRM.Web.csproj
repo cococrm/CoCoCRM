@@ -609,6 +609,7 @@
     <Content Include="Scripts\easyui\themes\default\images\layout_arrows.png" />
     <Content Include="Scripts\easyui\themes\default\images\linkbutton_bg.png" />
     <Content Include="Scripts\easyui\themes\default\images\loading.gif" />
+    <Content Include="Scripts\easyui\themes\default\images\lookup.gif" />
     <Content Include="Scripts\easyui\themes\default\images\menu_arrows.png" />
     <Content Include="Scripts\easyui\themes\default\images\messager_icons.png" />
     <Content Include="Scripts\easyui\themes\default\images\pagination_icons.png" />
@@ -779,6 +780,7 @@
     <Content Include="Scripts\utils\jquery.util.js" />
     <Content Include="Scripts\project.js" />
     <Content Include="Scripts\utils\util.js" />
+    <Content Include="Scripts\utils\副本 jquery.easyui.datagrid.lookup.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

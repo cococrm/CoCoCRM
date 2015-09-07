@@ -42,14 +42,21 @@ namespace CoCo.CRM.Web.Areas.Systems.Controllers
         /// <returns></returns>
         public ActionResult Save(string addList, string updateList, string deleteList)
         {
-            IList<SysMenuDTO> addEntitys = Common.Json.ToObject<List<SysMenuDTO>>(addList);
-            IList<SysMenuDTO> updateEntitys = Common.Json.ToObject<List<SysMenuDTO>>(updateList);
-            IList<SysMenuDTO> deleteEntitys = Common.Json.ToObject<List<SysMenuDTO>>(deleteList);
+            IList<SysMenuDTO> addEntitys = Common.Json.ToObject<List<SysMenuDTO>>(addList);//添加
+            IList<SysMenuDTO> updateEntitys = Common.Json.ToObject<List<SysMenuDTO>>(updateList);//修改
+            IList<SysMenuDTO> deleteEntitys = Common.Json.ToObject<List<SysMenuDTO>>(deleteList);//删除
             _sysMenuService.Save(addEntitys, updateEntitys, deleteEntitys);
             return OK();
         }
-
-
+        /// <summary>
+        /// 创建一个新行
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult New()
+        {
+            var entity = new { ID = Guid.NewGuid(), ParentId = Guid.Empty, SortId = 99, isNewRecord = true };
+            return Content(Common.Json.ToJson(entity));
+        }
         /// <summary>
         /// 获取所以菜单返回ComboTree格式
         /// </summary>
@@ -66,7 +73,7 @@ namespace CoCo.CRM.Web.Areas.Systems.Controllers
                             Children = _sysMenuService.LoadSystemMenuChilds(p.Id).ToList()
                         };
             var result = query.ToList();
-            result.Insert(0, new TreeNode(Guid.Empty, "无父目录", ""));
+            result.Insert(0, new TreeNode(Guid.Empty, "无父目录", ""));//加入 无父目录
             return Content(Common.Json.ToJson(result));
         }
 

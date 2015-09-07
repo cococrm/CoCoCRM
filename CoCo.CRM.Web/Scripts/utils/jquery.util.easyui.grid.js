@@ -17,14 +17,16 @@
                 }
             },
             //添加并编辑
-            addRow: function (gridId) {
+            addRow: function (gridId, url) {
                 if ($.easyui.treegrid.endEditing(gridId)) {
                     var grid = $("#" + gridId);
-                    var row = { ID: $.newGuid('-'), MenuName: "", MenuCode: "", ParentId: $.newEmptyGuid(), isNewRecord: true };
-                    grid.treegrid('append', { parent: '', data: [row] });
-                    grid.treegrid('select', row.ID);
-                    grid.data("datagrid").insertedRows.push(row);
-                    $.easyui.treegrid.edit(gridId);
+                    //var row= { ID: $.newGuid('-'), MenuName: "", MenuCode: "", ParentId: $.newEmptyGuid(), SortId: 99, isNewRecord: true };
+                    $.getJSON(url, function (row) {
+                        grid.treegrid('append', { parent: '', data: [row] });
+                        grid.treegrid('select', row.ID);
+                        grid.data("datagrid").insertedRows.push(row);
+                        $.easyui.treegrid.edit(gridId);
+                    });
                 }
             },
             //编辑行

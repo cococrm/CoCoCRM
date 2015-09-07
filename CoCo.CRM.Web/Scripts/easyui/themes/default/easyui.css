@@ -2821,3 +2821,6 @@
 .switchbutton-readonly {
   cursor: default;
 }
+.lookup .combo-arrow{
+    background:url(images/icon-select.gif) no-repeat 50% 50%;
+}

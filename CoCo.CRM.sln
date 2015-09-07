@@ -29,7 +29,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoCo.CRM.Service", "CoCo.CR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoCo.CRM.Web", "CoCo.CRM.Web\CoCo.CRM.Web.csproj", "{CB44CCBA-7700-45EC-AACB-B3E5AD622A58}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07-Tests", "07-Tests", "{E86908F2-623E-4C7C-90B8-642659C3EF79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoCo.CRM.EntityFramework.Tests", "CoCo.CRM.EntityFramework.Tests\CoCo.CRM.EntityFramework.Tests.csproj", "{4DEC7E89-91E7-4A63-91C9-C6D093400D05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3C4AD28-9297-456D-AD5E-00F25751E3E7}"
+	ProjectSection(SolutionItems) = preProject
+		CoCo.CRM.vsmdi = CoCo.CRM.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = CoCo.CRM.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -67,19 +81,25 @@ Global
 		{CB44CCBA-7700-45EC-AACB-B3E5AD622A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB44CCBA-7700-45EC-AACB-B3E5AD622A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB44CCBA-7700-45EC-AACB-B3E5AD622A58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DEC7E89-91E7-4A63-91C9-C6D093400D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEC7E89-91E7-4A63-91C9-C6D093400D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEC7E89-91E7-4A63-91C9-C6D093400D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEC7E89-91E7-4A63-91C9-C6D093400D05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{CB44CCBA-7700-45EC-AACB-B3E5AD622A58} = {5E28CA57-1819-435F-B175-90BF99EC98B6}
+		{6AD0AF22-62E1-4BFD-A9B0-DA051C285656} = {2EB90C9E-9AE1-4232-B278-0D7FCEEA633D}
 		{A3F05E95-A48A-4571-9B04-C8F9FA9D5D7E} = {FF1018B4-06BC-4C40-91E1-4045992B240D}
 		{A4B3F957-5680-44FE-8C51-D01F088DC7A1} = {FF1018B4-06BC-4C40-91E1-4045992B240D}
 		{0C694D03-39FF-4E81-95F6-D71DFAA81015} = {FF1018B4-06BC-4C40-91E1-4045992B240D}
-		{6AD0AF22-62E1-4BFD-A9B0-DA051C285656} = {2EB90C9E-9AE1-4232-B278-0D7FCEEA633D}
 		{9860BF01-A406-4E96-ACA5-F091E2C4345E} = {6A71D5BD-701D-4D4B-B8DD-37FFF4B956C6}
-		{CB44CCBA-7700-45EC-AACB-B3E5AD622A58} = {5E28CA57-1819-435F-B175-90BF99EC98B6}
 		{F23EB622-50E3-421A-9E3D-C0F86EF0CC1D} = {224BE1A4-1E72-4D06-982E-812F30FAE88C}
 		{2B5F69B7-8B58-4881-A9CB-FE94FFCB01D7} = {42F18D89-BA95-42E1-92ED-C43B4406E004}
+		{4DEC7E89-91E7-4A63-91C9-C6D093400D05} = {E86908F2-623E-4C7C-90B8-642659C3EF79}
+		{A3C4AD28-9297-456D-AD5E-00F25751E3E7} = {E86908F2-623E-4C7C-90B8-642659C3EF79}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35

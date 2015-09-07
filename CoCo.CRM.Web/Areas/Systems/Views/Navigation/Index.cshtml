@@ -4,11 +4,11 @@
 @*工具栏*@
 @section top{
     <div class="toolbar">
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'"onclick="$.easyui.treegrid.addRow('navigation')">新增</a> 
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="$.easyui.treegrid.addRow('navigation','New')">新增</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="$.easyui.treegrid.edit('navigation')">编辑</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-undo'" onclick="$.easyui.treegrid.cancel('navigation')">取消</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'" onclick="$.easyui.treegrid.remove('navigation')">删除</a> 
-        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'" onclick="$.easyui.treegrid.save('navigation','save')">保存</a> 
+        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'" onclick="$.easyui.treegrid.save('navigation','save')">保存</a>
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'" onclick="$.easyui.treegrid.refresh('navigation')">刷新</a>
     </div>
 }
@@ -47,7 +47,15 @@
                         }
                     }
                     },
-                    { title: '锁定', field: 'IsLock', align: 'center', width: '5%', editor: '{type:"checkbox",options:{on:true,off:false}}', formatter: $.easyui.formatterCheckbox },
+                    { title: '锁定', field: 'IsLock', align: 'center', width: '5%', editor: {
+                        type: "checkbox",
+                        options: {
+                            on: true,
+                            off: false
+                        }
+                    },
+                        formatter: $.easyui.formatterCheckbox
+                    },
                     { title: '父目录', field: 'ParentId', width: '15%', editor: {
                         type: "combotree",
                         options: {
@@ -60,7 +68,14 @@
                         }
                     },
                     { title: '备注', field: 'Remark', width: '15%', editor: 'text' },
-                    { title: '图标', field: 'Icon', width: '10%', editor: '{type:"lookup"}' },
+                    { title: '图标', field: 'Icon', width: '10%', editor: {
+                        type: 'lookup',
+                        options: {
+                            url:'Index',
+                            title:'选择图标'
+                        }
+                    }
+                    },
                     { title: '权限', field: 'Action', width: '8%', align: 'center',
                         formatter: function (value, row) {
                             return '<a href="#" class="easyui-linkbutton">管理权限</a>';

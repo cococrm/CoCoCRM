@@ -188,6 +188,77 @@
                     });
                 }
             },
+            dialog: function (options) {
+                ///	<summary>
+                ///	弹出模态窗，解决在Iframe中无法全屏遮罩,
+                /// 注意:仅支持url弹窗
+                ///	</summary>
+                ///	<param name="options" type="Object">
+                ///  1. title:标题
+                ///  2. url:网址
+                ///  3. buttons:显示在窗口底部的按钮区域div的id
+                ///  4. icon:图标class
+                ///  5. width:宽度
+                ///  6. height:高度
+                ///  7. onInit:初始化事件，返回false跳出执行
+                ///	</param>
+                initOptions();
+                if (!options.onInit(options))
+                    return;
+                var dialog = createDialow();
+                show();
+                addDialog(options.id);
+
+                //初始化参数
+                function initOptions() {
+                    options = $.extend({
+                        id: $.newGuid(""),
+                        title: '',
+                        url: '',
+                        icon: '',
+                        width: 800,
+                        height: 360,
+                        closed: false,
+                        maximizable: true,
+                        resizable: true,
+                        cache: false,
+                        modal: true,
+                        onInit: function () {
+                            return true;
+                        },
+                        closeCallback: function () { }
+                    }, options || {});
+                }
+
+                //创建窗口div
+                function createDialow() {
+                    return $parent("<div id='" + options.id + "'></div>").appendTo('body');
+                }
+
+                //弹出窗口
+                function show() {
+                    dialog.dialog({
+                        title: options.title,
+                        href: options.url,
+                        width: options.dialogWidth || options.width,
+                        height: options.dialogHeight || options.height,
+                        closed: options.closed,
+                        maximizable: options.maximizable,
+                        resizable: options.resizable,
+                        cache: options.cache,
+                        modal: options.modal,
+                        iconCls: options.icon,
+                        onLoad: function () {
+                            var win = $parent("#" + options.id).window("window");
+                            $parent("#" + options.buttons).addClass("dialog-button").appendTo(win);
+                        },
+                        onClose: function () {
+                            if (options.closeCallback)
+                                options.closeCallback();
+                        }
+                    });
+                }
+            },
             info: function (msg, title) {
                 ///	<summary>
                 ///	弹出信息框
