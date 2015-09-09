@@ -31,9 +31,9 @@
 
                 //移除控件
                 function removeControl() {
-//                    var item = $.easyui.getItem("lookups");
-//                    if (item === control)
-//                        $.easyui.getArray("lookups").pop();
+                    //var item = $.easyui.getItem("lookups");
+                    //if (item === control)
+                        //$.easyui.getArray("lookups").pop();
                 }
             }
 
@@ -61,4 +61,26 @@
             });
         }
     };
+
+    //扩展datagrid的查找带回
+    $.extend($.fn.datagrid.defaults.editors, {
+        lookup: {
+            init: function (container, options) {
+                var input = $('<input type="text" class="datagrid-editable-input"/>').appendTo(container);
+                return input.lookup(options);
+            },
+            destroy: function (target) {
+                $(target).lookup('destroy');
+            },
+            getValue: function (target) {
+                return $(target).lookup('getValue');
+            },
+            setValue: function (target, value) {
+                $(target).lookup('setValue', value);
+            },
+            resize: function (target, width) {
+                $(target).lookup('resize', width);
+            }
+        }
+    });
 })(jQuery);

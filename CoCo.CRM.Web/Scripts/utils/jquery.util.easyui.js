@@ -1,4 +1,5 @@
 ﻿(function ($) {
+    var $parent = parent.$;
     $.easyui = (function () {
 
         //获取消息管理器

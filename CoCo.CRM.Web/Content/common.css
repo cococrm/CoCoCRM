@@ -1,2 +1,6 @@
 ﻿.toolbar {clear: both;border: solid 1px #95b8e7; background: #e0edff; margin-top: 2px; }
 .top{ padding:2px 2px;}
+
+/*表格列查找带回*/
+.combo-lookup .combo-arrow { background: url('images/lookup.gif') no-repeat center center; }
+.combo-lookup .combo-arrow-hover { background-color: #000; }

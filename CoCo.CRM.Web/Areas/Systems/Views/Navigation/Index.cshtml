@@ -10,6 +10,7 @@
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'" onclick="$.easyui.treegrid.remove('navigation')">删除</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'" onclick="$.easyui.treegrid.save('navigation','save')">保存</a>
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'" onclick="$.easyui.treegrid.refresh('navigation')">刷新</a>
+        <input class="easyui-searchbox"></input>
     </div>
 }
 @section content{
@@ -71,8 +72,8 @@
                     { title: '图标', field: 'Icon', width: '10%', editor: {
                         type: 'lookup',
                         options: {
-                            url:'Index',
-                            title:'选择图标'
+                            title: '选择图标',
+                            icon: 'icon-rainbow'
                         }
                     }
                     },
