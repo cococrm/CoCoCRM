@@ -2,13 +2,15 @@
     $.project = (function () {
         return {
             //加载导航菜单
-            loadNavMenu: function (url, menuId,treeUrl) {
+            loadNavMenu: function (url, menuId, treeUrl) {
+                $.easyui.showLoading();
                 $.getJSON(url, function (data) {
                     $.each(data, function () {
                         $.project.addToAccordion(menuId, this.text, this.icon, false, treeUrl + "/" + this.id);
                     });
                     $("#" + menuId).accordion('select', 0);
                 });
+                $.easyui.removeLoading();
             },
             //加载手风琴
             addToAccordion: function (id, title, icon, select, url) {

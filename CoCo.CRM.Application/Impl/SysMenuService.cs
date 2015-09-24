@@ -23,7 +23,6 @@ namespace CoCo.CRM.Application.Impl
         private readonly IMenuActionRepository _menuActionRepository;
 
         public SysMenuService(
-            IRepositoryContext context,
             ISysMenuRepository sysMenuRepository,
             IActionTypeRepository actionTypeRepository,
             IMenuActionRepository menuActionRepository)

@@ -10,7 +10,6 @@
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cancel'" onclick="$.easyui.treegrid.remove('navigation')">删除</a> 
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'" onclick="$.easyui.treegrid.save('navigation','save')">保存</a>
         <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'" onclick="$.easyui.treegrid.refresh('navigation')">刷新</a>
-        <input class="easyui-searchbox"></input>
     </div>
 }
 @section content{
@@ -18,6 +17,14 @@
     </table>
     <script type="text/javascript">
         var _this = $("#navigation");
+        function DoAction(ID) {
+            var options = {
+                url:'',
+                title:'权限管理',
+
+            };
+            $.easyui.dialog(options);
+        }
         $(function () {
             _this.treegrid({
                 url: 'Query',
@@ -79,7 +86,7 @@
                     },
                     { title: '权限', field: 'Action', width: '8%', align: 'center',
                         formatter: function (value, row) {
-                            return '<a href="#" class="easyui-linkbutton">管理权限</a>';
+                            return '<a href="#" class="easyui-linkbutton" onclick="DoAction(\'' + row.ID + '\')">管理权限</a>';
                         }
                     }
                 ]],

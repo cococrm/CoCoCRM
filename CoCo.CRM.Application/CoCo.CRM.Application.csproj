@@ -48,7 +48,9 @@
   <ItemGroup>
     <Compile Include="ApplicationService.cs" />
     <Compile Include="BaseService.cs" />
+    <Compile Include="IActionTypeService.cs" />
     <Compile Include="IBaseService.cs" />
+    <Compile Include="Impl\ActionTypeService.cs" />
     <Compile Include="Impl\SysMenuService.cs" />
     <Compile Include="ISysMenuService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -208,7 +208,7 @@
                     return;
                 var dialog = createDialow();
                 show();
-                addDialog(options.id);
+                //addDialog(options.id);
 
                 //初始化参数
                 function initOptions() {
